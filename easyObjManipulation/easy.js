@@ -62,11 +62,26 @@ function countEmployeesInDepartment(emplArr, department) {
 
 // Ex9
 function getUniqueDepartments(emplArr) {
-    let uniques;
+    let uniques = [emplArr[0].department];
 
-    // for (let ind in emplArr.slice(0,-1)) {
-    //     let nextInd = ind + 1;
-    //     while (nextInd < countEmployees(emplArr))
-    // }
+    for (let ind in emplArr.slice(1)) {
+        let isUnique = true;
+        let department = emplArr[ind].department;
+        for (let uniq of uniques) {
+            if (department == uniq) {
+                isUnique = false;
+                break;
+            }
+        }
+        if (isUnique) uniques = [...uniques, department];
+    }
+    return uniques;
 }
-// console.log(getLastEmployeeLastName(employees));
+
+// Ex10
+function hasEmployeesWithoutProjects(emplArr) {
+    for (let employee of emplArr) if (!employee.projects.length) return true;
+    return false;
+}
+
+console.log(hasEmployeesWithoutProjects(employees));
