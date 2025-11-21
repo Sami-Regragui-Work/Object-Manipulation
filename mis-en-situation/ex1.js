@@ -27,3 +27,40 @@ document.getElementById("show").addEventListener("click", () => {
 document.getElementById("hide").addEventListener("click", () => {
     tbody.style.display = "none";
 });
+
+const skillsDiv = document.getElementById("skills-container");
+const form = document.getElementById("employee-form");
+let skillCounter = 0;
+
+function addSkill() {
+    skillsDiv.innerHTML += `<input type='text' name='skill_${++skillCounter}'></input><button type='button'>X</button>`;
+}
+
+function removeSkill(e) {
+    const target = e.target;
+    if (target.tagName == "BUTTON") {
+        target.previousElementSibling.remove();
+        target.remove();
+    }
+}
+
+function addEmployee(e) {
+    e.preventDefault();
+    const inputs = Array.from(document.querySelectorAll("input, select"));
+    const tr = document.createElement("tr");
+    inputs.slice(0, 4).forEach((input) => {
+        tr.innerHTML += `<td>${input.value}</td>`;
+    });
+    tr.innerHTML += `<td>${inputs
+        .slice(4)
+        .map((input) => input.value)
+        .join(",")}</td>`;
+    tbody.appendChild(tr);
+    e.target.reset();
+}
+
+document.getElementById("add-skill-btn").addEventListener("click", addSkill);
+
+form.addEventListener("submit", addEmployee);
+
+skillsDiv.addEventListener("click", removeSkill);
