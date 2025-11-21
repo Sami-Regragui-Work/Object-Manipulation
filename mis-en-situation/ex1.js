@@ -31,14 +31,25 @@ document.getElementById("hide").addEventListener("click", () => {
 const skillsDiv = document.getElementById("skills-container");
 const form = document.getElementById("employee-form");
 let skillCounter = 0;
+let skillEnumaration = skillCounter;
 
 function addSkill() {
-    skillsDiv.innerHTML += `<input type='text' name='skill_${++skillCounter}'></input><button type='button'>X</button>`;
+    skillCounter++;
+    const input = document.createElement("input");
+    const btn = document.createElement("button");
+    input.type = "text";
+    input.name = `skill_${++skillEnumaration}`;
+    input.placeholder = `skill ${skillEnumaration}`;
+    btn.type = "button";
+    btn.textContent = "X";
+    skillsDiv.appendChild(input);
+    skillsDiv.appendChild(btn);
 }
 
 function removeSkill(e) {
     const target = e.target;
     if (target.tagName == "BUTTON") {
+        skillCounter--;
         target.previousElementSibling.remove();
         target.remove();
     }
