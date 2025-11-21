@@ -10,24 +10,12 @@ function afficherEmployes(emplArr) {
         <td>${employee.department}</td>
         <td>${employee.position}</td>
         <td>${employee.salary}</td>
+        <td>${employee.skills.join(",")}</td>
         <td>${employee.joinDate}</td>
         <td>${employee.email}</td>
-        <td>${employee.isActive}</td></tr>`;
-        const skills = document.createElement("tr");
-        employee.skills.forEach((skill) => {
-            skills.innerHTML += `<td>${skill}</td>`;
-        });
-        const projects = document.createElement("tr");
-        employee.projects.forEach((project) => {
-            projects.innerHTML += `<td>${project}</td>`;
-        });
-        const languages = document.createElement("tr");
-        employee.languages.forEach((language) => {
-            languages.innerHTML += `<td>${language}</td>`;
-        });
-        tbody.appendChild(skills);
-        tbody.appendChild(projects);
-        tbody.appendChild(languages);
+        <td>${employee.projects.join(",")}</td>
+        <td>${employee.isActive}</td>
+        <td>${employee.languages.join(",")}</td></tr>`;
     });
 }
 
